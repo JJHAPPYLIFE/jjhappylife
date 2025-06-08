@@ -146,7 +146,7 @@ body {
 .contact-row > p { font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; text-align: left; }
 .parents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .parents { display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; padding: 10px 15px; border-radius: 8px; }
-.parents p { font-size: 0.95rem; font-weight: 500; margin: 0; }
+.parents p { font-size: 0.85rem; font-weight: 500; margin: 0; }
 .call-buttons { display: flex; }
 .call-btn, .sms-btn { text-decoration: none; font-size: 1.5rem; color: #555; margin-left: 10px; }
 
