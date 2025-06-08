@@ -162,5 +162,21 @@ document.addEventListener("DOMContentLoaded", function() {
     
         galleryObserver.observe(galleryGrid);
     }
-
+    const swiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            loop: true, // 무한 루프
+            grabCursor: true, // 마우스 커서를 잡는 모양으로 변경
+          
+            // Pagination (페이지 표시 점)
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true, // 점을 클릭해서 이동 가능
+            },
+          
+            // Navigation arrows (좌우 이동 버튼)
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+        });
 });
