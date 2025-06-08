@@ -459,54 +459,5 @@ body {
     transform: translateY(30px) scale(0.95); /* 아래에서 위로 올라오며 살짝 커지는 효과 */
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 전환 효과 */
 }
-/* ======================================================= */
-/* ================== SWIPER GALLERY STYLE =============== */
-/* ======================================================= */
 
-.swiper-container {
-    width: 100%;
-    height: 100%;
-    /* 좌우 버튼과 페이지네이션을 위한 여백 확보 */
-    padding: 0 0 40px 0;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 좌우 버튼, 페이지네이션 색상 및 스타일 조정 */
-:root {
-    /* 청첩장 테마와 어울리는 색으로 변경 */
-    --swiper-navigation-color: #6a7a62; 
-    --swiper-pagination-color: #6a7a62;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    /* 버튼 크기를 약간 줄여서 모바일에 어울리게 함 */
-    --swiper-navigation-size: 28px;
-    /* 버튼 배경을 살짝 추가해 잘 보이도록 함 */
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.swiper-button-prev {
-    left: 0;
-}
-.swiper-button-next {
-    right: 0;
-}
-/* JavaScript에 의해 .visible 클래스가 추가된 후의 상태 */
-#gallery .gallery-item.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
 }
