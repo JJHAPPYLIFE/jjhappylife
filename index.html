@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:title" content="정훈과 지인의 결혼식에 초대합니다">
     <meta property="og:description" content="2025년 11월 08일 토요일 오전 11시 30분, 서울시립대 자작마루">
     <meta property="og:image" content="./images/thumbnail.jpg">
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="section invitation">
+        <div class="section invitation scroll-animate">
             <h2>초대합니다</h2>
             <p>
                 함께 있을 때 가장 나다운 모습이 되고,<br>
@@ -33,8 +33,7 @@
             </p>
         </div>
 
-        <div class="section groom-bride">
-            <div>
+        <div class="section groom-bride scroll-animate"> <div>
                 <h3>신랑</h3>
                 <p>이정훈</p>
             </div>
@@ -45,8 +44,7 @@
         </div>
         <hr class="divider">
 
-        <div class="section location">
-            <h2>오시는 길</h2>
+        <div class="section location scroll-animate"> <h2>오시는 길</h2>
             <p>서울시립대학교 자작마루</p>
             <p>서울 동대문구 서울시립대로 163</p>
             
@@ -69,25 +67,31 @@
         </div>
         <hr class="divider">
         
-        <div class="section gallery">
-            <h2>갤러리</h2>
-            <div class="gallery-grid">
-                <img src="./images/gallery1.jpg" alt="갤러리 사진 1" class="gallery-item">
-                <img src="./images/gallery2.jpg" alt="갤러리 사진 2" class="gallery-item">
-                <img src="./images/gallery3.jpg" alt="갤러리 사진 3" class="gallery-item">
-                <img src="./images/gallery4.jpg" alt="갤러리 사진 4" class="gallery-item">
-                <img src="./images/gallery5.jpg" alt="갤러리 사진 5" class="gallery-item">
-                <img src="./images/gallery6.jpg" alt="갤러리 사진 6" class="gallery-item">
+        <section id="gallery" class="section"> <h2>갤러리</h2>
+            <div class="gallery-custom-grid">
+                <div class="gallery-item gallery-item-large">
+                    <img src="./images/gallery1.jpg" alt="갤러리 사진 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/gallery2.jpg" alt="갤러리 사진 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/gallery3.jpg" alt="갤러리 사진 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/gallery4.jpg" alt="갤러리 사진 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/gallery5.jpg" alt="갤러리 사진 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/gallery6.jpg" alt="갤러리 사진 6">
+                </div>
             </div>
-        </div>
-        <div id="modal" class="modal">
-            <span class="close-btn">&times;</span>
-            <img class="modal-content" id="modal-img">
-        </div>
+        </section>
         <hr class="divider">
 
-        <div class="section rsvp">
-            <h2>참석 의사 전달</h2>
+        <div class="section rsvp scroll-animate"> <h2>참석 의사 전달</h2>
             <p>소중한 분들을 귀히 모시고자 합니다.<br>참석하시어 자리를 빛내주시길 바랍니다.</p>
             
             <form id="rsvp-form" action="https://formspree.io/f/xeokajqe" method="POST">
@@ -137,8 +141,7 @@
         </div>
         <hr class="divider">
 
-        <div class="section contact">
-            <h3>혼주에게 연락하기</h3>
+        <div class="section contact scroll-animate"> <h3>혼주에게 연락하기</h3>
             <div class="contact-row">
                 <p>신랑 측 혼주</p>
                 <div class="parents-grid">
@@ -180,8 +183,7 @@
         </div>
         <hr class="divider">
         
-        <div class="section account">
-            <h2>마음 전하실 곳</h2>
+        <div class="section account scroll-animate"> <h2>마음 전하실 곳</h2>
             <div class="account-info">
                 <p>참석이 어려우신 분들을 위해 계좌번호를 기재합니다.</p>
                 <button class="account-btn" data-target="groom-account">신랑 측 계좌번호 보기</button>
@@ -197,10 +199,11 @@
             </div>
         </div>
 
-        <div class="section footer">
-            <p>Made by Junghoon & Jiin </p>
+        <div class="section footer scroll-animate"> <p>Made by Junghoon & Jiin </p>
         </div>
     </div>
+
+    <div id="submit-toast" class="toast-popup"></div>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_APP_KEY&libraries=services"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
