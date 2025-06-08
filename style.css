@@ -145,8 +145,27 @@ body {
 .contact-row:last-child { margin-bottom: 0; }
 .contact-row > p { font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; text-align: left; }
 .parents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.parents { display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; padding: 10px 15px; border-radius: 8px; }
-.parents p { font-size: 0.85rem; font-weight: 500; margin: 0; }
+/* 기존 .parents 스타일을 아래 코드로 교체 */
+.parents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px; /* 패딩을 살짝 조정 */
+    border-radius: 8px;
+    min-height: 160px; /* 최소 높이를 지정하여 공간 확보 */
+}
+.parents p {
+    writing-mode: vertical-rl; /* 글자를 세로쓰기 모드로 변경 */
+    
+    /* 추가적인 스타일 조정 */
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 15px 0;       /* 세로로 길어졌으므로 상하 여백을 줌 */
+    letter-spacing: 3px;   /* 글자 사이 간격을 살짝 벌림 */
+    text-align: center;
+}
 .call-buttons { display: flex; }
 .call-btn, .sms-btn { text-decoration: none; font-size: 1.5rem; color: #555; margin-left: 10px; }
 
