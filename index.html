@@ -110,28 +110,32 @@
 </section>
 
         <div class="section location scroll-animate">
-            <h2 class="section-title">오시는 길</h2>
-            <p>서울시립대학교 자작마루</p>
-            <p>서울 동대문구 서울시립대로 163</p>
-            <div class="transport-info">
-                <div class="transport-item">
-                    <span class="transport-icon">🚇</span>
-                    <p>
-                        <strong>지하철 이용 시</strong><br>
-                        1호선, 경의중앙선, 경춘선 <b><br>
-                        회기역 2번 출구</b><br>
-                        <span>도보 약 15~20분 소요됩니다.</span>
-                    </p>
-                </div>
-            </div>
-            <div id="map"></div>
-            <div class="map-buttons">
-                <a href="https://naver.me/FxFHbbBc" target="_blank" class="map-btn naver">네이버맵</a>
-                <a href="https://place.map.kakao.com/17563254" target="_blank" class="map-btn kakao">카카오맵</a>
-            </div>
+    <h2 class="section-title">오시는 길</h2>
+    <p>서울시립대학교 자작마루</p>
+    <p>서울 동대문구 서울시립대로 163</p>
+    <div class="transport-info">
+        <div class="transport-item">
+            <span class="transport-icon">🚇</span>
+            <p>
+                <strong>지하철 이용 시</strong><br>
+                1호선, 경의중앙선, 경춘선 <b>회기역 2번 출구</b><br>
+                <span>도보 약 15~20분 소요됩니다.</span>
+            </p>
         </div>
-        <hr class="divider">
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="map-buttons">
+        <a href="https://naver.me/FxFHbbBc" target="_blank" class="map-btn naver">네이버맵</a>
+        <a href="https://place.map.kakao.com/17563254" target="_blank" class="map-btn kakao">카카오맵</a>
+    </div>
+</div>
 
+
+
+
+        <hr class="divider">
         <div class="section rsvp scroll-animate">
             <h2 class="section-title">참석 의사 전달</h2>
             <p>소중한 분들을 귀히 모시고자 합니다.<br>참석하시어 자리를 빛내주시길 바랍니다.</p>
@@ -195,26 +199,10 @@
         </div>
     </div>
 
-    <div id="submit-toast" class="toast-popup"></div>
+   <div id="submit-toast" class="toast-popup"></div>
 
-    <!–– 맵 SDK 로드 (반드시 https://) ––>
-    <script
-      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=913766d78e1aa9c59ae8f88df297a238&libraries=services"
-      integrity="sha384-..."
-      crossorigin="anonymous"
-      defer>
-    </script>
-    
-    <!–– 실제 맵 초기화 스크립트 ––>
-    <script defer>
-      window.onload = function() {
-        var container = document.getElementById('map');
-        var options = { center: new kakao.maps.LatLng(37.583, 127.058), level: 3 };
-        new kakao.maps.Map(container, options);
-      };
-    </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" defer></script>
-    <script src="script.js" defer></script>
-    </body>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=913766d78e1aa9c59ae8f88df297a238&libraries=services"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>

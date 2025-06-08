@@ -56,11 +56,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (typeof kakao !== "undefined" && kakao.maps) {
                 kakao.maps.load(function() {
                     const mapOption = { 
-                        center: new kakao.maps.LatLng(37.58386, 127.05876),
+                        center: new kakao.maps.LatLng(37.582867, 127.05767),
                         level: 3 
                     };
                     const map = new kakao.maps.Map(mapContainer, mapOption);
-                    const markerPosition  = new kakao.maps.LatLng(37.58386, 127.05876); 
+                    const markerPosition  = new kakao.maps.LatLng(37.582867, 127.05767); 
                     const marker = new kakao.maps.Marker({ position: markerPosition });
                     marker.setMap(map);
                     const iwContent = '<div style="padding:5px; text-align:center; font-size:14px; min-width:150px;">서울시립대 자작마루</div>';
