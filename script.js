@@ -1,84 +1,76 @@
-/**
- * 화면 하단에 팝업(토스트) 메시지를 보여주는 함수
- */
 function showToast(message, isError = false) {
     const toast = document.getElementById("submit-toast");
     if (!toast) return;
-
     toast.textContent = message;
     toast.className = 'toast-popup show';
     if (isError) {
         toast.classList.add('error');
     }
-
     setTimeout(() => {
         toast.classList.remove("show");
     }, 3000);
 }
 
 /**
- * [수정됨] 달력을 생성하는 함수 (로직 오류 해결)
+ * 달력을 생성하는 함수
  */
 function generateCalendar(year, month) {
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
-
     const date = new Date(year, month - 1, 1);
     const lastDay = new Date(year, month, 0).getDate();
-    const firstDayIndex = date.getDay(); // 0: Sunday, 1: Monday, ...
-
+    const firstDayIndex = date.getDay();
     let calendarHTML = '<table><thead><tr>';
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     days.forEach(day => calendarHTML += `<th>${day}</th>`);
     calendarHTML += '</tr></thead><tbody>';
-
     let dayCounter = 1;
-    for (let i = 0; i < 6; i++) { // 달력은 최대 6주까지 있을 수 있음
+    for (let i = 0; i < 6; i++) {
         calendarHTML += '<tr>';
         for (let j = 0; j < 7; j++) {
-            // 첫 번째 주에서 시작일 이전이거나, 마지막 날짜를 넘어섰다면 빈 칸으로 채움
             if ((i === 0 && j < firstDayIndex) || dayCounter > lastDay) {
                 calendarHTML += '<td></td>';
             } else {
-                let cellClass = '';
-                if (dayCounter === 8) { // 결혼식 날짜
-                    cellClass = ' class="wedding-day"';
-                }
+                let cellClass = (dayCounter === 8) ? ' class="wedding-day"' : '';
                 calendarHTML += `<td${cellClass}><div>${dayCounter}</div></td>`;
                 dayCounter++;
             }
         }
         calendarHTML += '</tr>';
-        if (dayCounter > lastDay) {
-            break; // 마지막 날짜를 넘었으면 루프 중단
-        }
+        if (dayCounter > lastDay) break;
     }
-
     calendarHTML += '</tbody></table>';
     calendarEl.innerHTML = calendarHTML;
 }
 
-
 // HTML 문서가 완전히 로드되면 아래 코드들을 실행
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 2025년 11월 달력 생성
     generateCalendar(2025, 11);
 
-    // 카카오맵 API 초기화
+    // [수정] 카카오맵 API 초기화 코드
     const mapContainer = document.getElementById('map');
-    if (mapContainer && typeof kakao !== "undefined") {
-        const mapOption = { 
-            center: new kakao.maps.LatLng(37.58386, 127.05876),
-            level: 3 
-        };
-        const map = new kakao.maps.Map(mapContainer, mapOption);
-        const markerPosition  = new kakao.maps.LatLng(37.58386, 127.05876); 
-        const marker = new kakao.maps.Marker({ position: markerPosition });
-        marker.setMap(map);
-        const iwContent = '<div style="padding:5px; text-align:center; font-size:14px; min-width:150px;">서울시립대 자작마루</div>';
-        const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
-        infowindow.open(map, marker);
+    if (mapContainer) {
+        // 카카오 API가 로드될 때까지 잠시 기다렸다가 실행
+        setTimeout(function() {
+            if (typeof kakao !== "undefined" && kakao.maps) {
+                kakao.maps.load(function() {
+                    const mapOption = { 
+                        center: new kakao.maps.LatLng(37.58386, 127.05876),
+                        level: 3 
+                    };
+                    const map = new kakao.maps.Map(mapContainer, mapOption);
+                    const markerPosition  = new kakao.maps.LatLng(37.58386, 127.05876); 
+                    const marker = new kakao.maps.Marker({ position: markerPosition });
+                    marker.setMap(map);
+                    const iwContent = '<div style="padding:5px; text-align:center; font-size:14px; min-width:150px;">서울시립대 자작마루</div>';
+                    const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
+                    infowindow.open(map, marker);
+                });
+            } else {
+                mapContainer.innerHTML = "지도를 불러오는 데 실패했습니다. API 키와 도메인 설정을 확인해주세요.";
+            }
+        }, 100); // 0.1초 대기
     }
 
     // 계좌번호 토글 기능
