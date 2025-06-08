@@ -148,15 +148,14 @@ body {
 /* 기존 .parents 스타일을 아래 코드로 교체 */
 .parents {
     display: flex;
-    flex-wrap: wrap; /* 핵심: 공간이 부족하면 다음 줄로 자동 줄바꿈 */
-    justify-content: space-between;
+    flex-wrap: wrap; /* 공간이 부족하면 다음 줄로 자동 줄바꿈 */
+    justify-content: space-between; /* 기본 상태: 양쪽 끝 정렬 */
     align-items: center;
-    gap: 10px 20px; /* 세로, 가로 간격 */
+    gap: 10px; /* 아이템 사이의 최소 간격 */
     background-color: #f9f9f9;
-    padding: 15px;
+    padding: 15px 20px; /* 좌우 패딩을 조금 더 줌 */
     border-radius: 8px;
 }
-
 /* 이름(p 태그) */
 .parents p {
     font-size: 0.95rem; /* 글자 크기 원상 복구 */
@@ -246,4 +245,11 @@ body {
     .gallery-scroll-container::-webkit-scrollbar-track { background: #2c2c2c; }
     .gallery-scroll-container::-webkit-scrollbar-thumb { background: #555; }
     .gallery-scroll-container::-webkit-scrollbar-thumb:hover { background: #777; }
+}
+@media (max-width: 420px) {
+    .parents {
+        flex-direction: column; /* 세로로 쌓음 */
+        justify-content: center; /* 가운데 정렬로 변경 */
+        gap: 15px; /* 세로로 쌓였을 때의 간격 */
+    }
 }
