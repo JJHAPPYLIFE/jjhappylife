@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="정훈과 지인의 결혼식에 초대합니다">
+    <meta property="og:description" content="2025년 11월 08일 토요일 오전 11시 30분, 서울시립대 자작마루">
+    <meta property="og:image" content="./images/thumbnail.jpg">
+    <title>정훈 & 지인</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="section main">
+            <img src="./images/main.jpg" alt="메인 웨딩 사진" class="main-photo">
+            <div class="main-text">
+                <h1>정훈 & 지인</h1>
+                <p>2025. 11. 08. SAT AM 11:30</p>
+                <p>서울시립대 자작마루</p>
+            </div>
+        </div>
+
+        <div class="section invitation">
+            <h2>초대합니다</h2>
+            <p>
+                함께 있을 때 가장 나다운 모습이 되고,<br>
+                함께 있을 때 미래를 꿈꾸게 하는 사람을 만났습니다.<br>
+                서로에게 좋은 영향을 주며 예쁘게 살겠습니다.<br>
+                저희의 첫 시작을 함께 축복해주세요.
+            </p>
+        </div>
+
+        <div class="section groom-bride">
+            <div>
+                <h3>신랑</h3>
+                <p>이정훈</p>
+            </div>
+            <div>
+                <h3>신부</h3>
+                <p>최지인</p>
+            </div>
+        </div>
+        <hr class="divider">
+
+        <div class="section location">
+            <h2>오시는 길</h2>
+            <p>서울시립대학교 자작마루</p>
+            <p>서울 동대문구 서울시립대로 163</p>
+            
+            <div class="transport-info">
+                <div class="transport-item">
+                    <span class="transport-icon">🚇</span>
+                    <p>
+                        <strong>지하철 이용 시</strong><br>
+                        1호선, 경의중앙선, 경춘선 <b>회기역 2번 출구</b><br>
+                        <span>도보 약 15~20분 소요됩니다.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div id="map"></div>
+            <div class="map-buttons">
+                <a href="https://naver.me/FxFHbbBc" target="_blank" class="map-btn naver">네이버맵</a>
+                <a href="https://place.map.kakao.com/17563254" target="_blank" class="map-btn kakao">카카오맵</a>
+            </div>
+        </div>
+        <hr class="divider">
+        
+        <div class="section gallery">
+            <h2>갤러리</h2>
+            <div class="gallery-grid">
+                <img src="./images/gallery1.jpg" alt="갤러리 사진 1" class="gallery-item">
+                <img src="./images/gallery2.jpg" alt="갤러리 사진 2" class="gallery-item">
+                <img src="./images/gallery3.jpg" alt="갤러리 사진 3" class="gallery-item">
+                <img src="./images/gallery4.jpg" alt="갤러리 사진 4" class="gallery-item">
+                <img src="./images/gallery5.jpg" alt="갤러리 사진 5" class="gallery-item">
+                <img src="./images/gallery6.jpg" alt="갤러리 사진 6" class="gallery-item">
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <span class="close-btn">&times;</span>
+            <img class="modal-content" id="modal-img">
+        </div>
+        <hr class="divider">
+
+        <div class="section rsvp">
+            <h2>참석 의사 전달</h2>
+            <p>소중한 분들을 귀히 모시고자 합니다.<br>참석하시어 자리를 빛내주시길 바랍니다.</p>
+            
+            <form id="rsvp-form" action="https://formspree.io/f/xeokajqe" method="POST">
+                
+                <fieldset>
+                    <legend>하객 정보</legend>
+                    <div class="form-group">
+                        <label for="name">성함</label>
+                        <input type="text" id="name" name="성함" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="relationship">신랑, 신부와의 관계 (예: 신랑 친구)</label>
+                        <input type="text" id="relationship" name="관계" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">동반 인원 (본인 포함)</label>
+                        <input type="number" id="guests" name="동반인원" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">신랑 신부에게 전하고 싶은 말</label>
+                        <input type="text" id="message" name="메시지">
+                    </div>
+                </fieldset>
+
+                <fieldset class="bus-survey">
+                    <legend>전세버스 탑승 신청</legend>
+                    <p class="guide-text">결혼식 장소가 멀어 오시기 힘든 분들을 위해<br>두 지역에서 전세버스를 운행합니다.</p>
+                    
+                    <div class="form-group bus-radio-group">
+                        <input type="radio" id="bus-busan" name="bus_choice" value="부산 (동래)">
+                        <label for="bus-busan">부산<br><span class="bus-sublabel">(동래)</span></label>
+                        <input type="radio" id="bus-gimhae" name="bus_choice" value="김해 (장유)">
+                        <label for="bus-gimhae">김해<br><span class="bus-sublabel">(장유)</span></label>
+                        <input type="radio" id="bus-none" name="bus_choice" value="해당 없음" checked>
+                        <label for="bus-none">해당 없음</label>
+                    </div>
+                    
+                    <div class="form-group count-group hidden" id="bus-count-wrapper">
+                        <label for="bus-guests">탑승 인원 (본인 포함)</label>
+                        <input type="number" id="bus-guests" name="탑승인원" min="0" value="0">
+                    </div>
+                </fieldset>
+                
+                <button type="submit" class="submit-btn">참석 의사 보내기</button>
+            </form>
+        </div>
+        <hr class="divider">
+
+        <div class="section contact">
+            <h3>혼주에게 연락하기</h3>
+            <div class="contact-row">
+                <p>신랑 측 혼주</p>
+                <div class="parents-grid">
+                    <div class="parents">
+                        <p>아버지 이병걸</p>
+                        <div class="call-buttons">
+                            <a href="tel:010-2631-2973" class="call-btn">📞</a>
+                            <a href="sms:010-2631-2973" class="sms-btn">✉️</a>
+                        </div>
+                    </div>
+                    <div class="parents">
+                        <p>어머니 박금주</p>
+                        <div class="call-buttons">
+                            <a href="tel:010-3270-2973" class="call-btn">📞</a>
+                            <a href="sms:010-3270-2973" class="sms-btn">✉️</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-row">
+                <p>신부 측 혼주</p>
+                <div class="parents-grid">
+                    <div class="parents">
+                        <p>아버지 최현수</p>
+                        <div class="call-buttons">
+                            <a href="tel:010-7151-6559" class="call-btn">📞</a>
+                            <a href="sms:010-7151-6559" class="sms-btn">✉️</a>
+                        </div>
+                    </div>
+                    <div class="parents">
+                        <p>어머니 강윤옥</p>
+                        <div class="call-buttons">
+                            <a href="tel:010-3035-6420" class="call-btn">📞</a>
+                            <a href="sms:010-3035-6420" class="sms-btn">✉️</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="divider">
+        
+        <div class="section account">
+            <h2>마음 전하실 곳</h2>
+            <div class="account-info">
+                <p>참석이 어려우신 분들을 위해 계좌번호를 기재합니다.</p>
+                <button class="account-btn" data-target="groom-account">신랑 측 계좌번호 보기</button>
+                <div id="groom-account" class="account-details">
+                    <p>농협은행 312-0224-8663-31 (예금주: 이정훈)</p>
+                    <button class="copy-btn" data-clipboard-text="3120224866331">복사</button>
+                </div>
+                <button class="account-btn" data-target="bride-account">신부 측 계좌번호 보기</button>
+                <div id="bride-account" class="account-details">
+                    <p>하나은행 880-9106-0616-107 (예금주: 최지인)</p>
+                    <button class="copy-btn" data-clipboard-text="88091060616107">복사</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section footer">
+            <p>Made by Junghoon & Jiin </p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_APP_KEY&libraries=services"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
