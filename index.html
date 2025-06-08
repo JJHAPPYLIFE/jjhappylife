@@ -197,9 +197,22 @@
 
     <div id="submit-toast" class="toast-popup"></div>
 
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=913766d78e1aa9c59ae8f88df297a238&libraries=services"
-integrity="sha384-..."
-  crossorigin="anonymous">></script>
+    <!–– 맵 SDK 로드 (반드시 https://) ––>
+    <script
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=913766d78e1aa9c59ae8f88df297a238&libraries=services"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+      defer>
+    </script>
+    
+    <!–– 실제 맵 초기화 스크립트 ––>
+    <script defer>
+      window.onload = function() {
+        var container = document.getElementById('map');
+        var options = { center: new kakao.maps.LatLng(37.588, 127.051), level: 3 };
+        new kakao.maps.Map(container, options);
+      };
+    </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" defer></script>
     <script src="script.js" defer></script>
