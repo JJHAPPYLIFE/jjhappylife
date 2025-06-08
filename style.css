@@ -459,5 +459,76 @@ body {
     transform: translateY(30px) scale(0.95); /* 아래에서 위로 올라오며 살짝 커지는 효과 */
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 전환 효과 */
 }
+.container {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
 
+.section {
+    /* 다크 모드에서 너무 밝지 않게 약간 어둡게 */
+    background-color: #282828;
+}
+
+.divider {
+    background-color: #444;
+}
+
+.parents {
+    background-color: #333;
+    color: #f8f8f2;
+}
+
+.location .transport-info {
+    background-color: #333;
+    color: #f8f8f2;
+}
+.location .transport-item p span {
+    color: #aaa;
+}
+
+.account-details {
+    background-color: #333;
+    color: #f8f8f2;
+}
+
+.rsvp {
+    background-color: #3a3a3a;
+}
+.rsvp > p {
+    color: #ccc;
+}
+.form-group label, .form-group .radio-label {
+    color: #eee;
+}
+.form-group input, .form-group input::placeholder {
+    background-color: #444;
+    color: #f8f8f2;
+}
+.bus-radio-group label {
+    background-color: #444;
+    color: #eee;
+    border-color: #555;
+}
+.bus-radio-group input:checked + label {
+    background-color: #6a7a62; /* 기존 테마 색 유지 (밝게 보일 수 있음) */
+    color: white;
+    border-color: #566450;
+}
+
+.footer {
+    background-color: #282828;
+    color: #999;
+}
+
+/* [수정] 다크 모드에서 갤러리 십자선 및 그리드 색상 변경 */
+.gallery-custom-grid {
+    /* 다크 모드에서 그리드 라인이 너무 밝지 않도록 어둡게 조정 */
+    background-color: #333;
+}
+
+.gallery-item-large::after,
+.gallery-item-large::before {
+    /* 다크 모드에서 십자선 색상 변경 */
+    background-color: #555; /* 또는 더 밝은 회색 #888 등 */
+}
 }
