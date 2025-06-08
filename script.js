@@ -1,77 +1,110 @@
 /**
  * 화면 하단에 팝업(토스트) 메시지를 보여주는 함수
- * @param {string} message - 표시할 메시지
- * @param {boolean} isError - 오류 메시지인지 여부 (기본값: false)
  */
 function showToast(message, isError = false) {
     const toast = document.getElementById("submit-toast");
     if (!toast) return;
 
     toast.textContent = message;
-    toast.classList.remove('error'); // 이전 에러 스타일 제거
-
+    toast.className = 'toast-popup show';
     if (isError) {
         toast.classList.add('error');
     }
 
-    toast.classList.add("show"); // 팝업 보이기
-
-    // 3초 후에 팝업을 자동으로 사라지게 함
     setTimeout(() => {
         toast.classList.remove("show");
     }, 3000);
 }
 
+/**
+ * [수정됨] 달력을 생성하는 함수 (로직 오류 해결)
+ */
+function generateCalendar(year, month) {
+    const calendarEl = document.getElementById('calendar');
+    if (!calendarEl) return;
 
-// [수정] 모든 코드가 이 DOMContentLoaded 이벤트 리스너 안에서 실행되도록 구조 변경
+    const date = new Date(year, month - 1, 1);
+    const lastDay = new Date(year, month, 0).getDate();
+    const firstDayIndex = date.getDay(); // 0: Sunday, 1: Monday, ...
+
+    let calendarHTML = '<table><thead><tr>';
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    days.forEach(day => calendarHTML += `<th>${day}</th>`);
+    calendarHTML += '</tr></thead><tbody>';
+
+    let dayCounter = 1;
+    for (let i = 0; i < 6; i++) { // 달력은 최대 6주까지 있을 수 있음
+        calendarHTML += '<tr>';
+        for (let j = 0; j < 7; j++) {
+            // 첫 번째 주에서 시작일 이전이거나, 마지막 날짜를 넘어섰다면 빈 칸으로 채움
+            if ((i === 0 && j < firstDayIndex) || dayCounter > lastDay) {
+                calendarHTML += '<td></td>';
+            } else {
+                let cellClass = '';
+                if (dayCounter === 8) { // 결혼식 날짜
+                    cellClass = ' class="wedding-day"';
+                }
+                calendarHTML += `<td${cellClass}><div>${dayCounter}</div></td>`;
+                dayCounter++;
+            }
+        }
+        calendarHTML += '</tr>';
+        if (dayCounter > lastDay) {
+            break; // 마지막 날짜를 넘었으면 루프 중단
+        }
+    }
+
+    calendarHTML += '</tbody></table>';
+    calendarEl.innerHTML = calendarHTML;
+}
+
+
+// HTML 문서가 완전히 로드되면 아래 코드들을 실행
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 카카오맵 API (기존과 동일)
+    // 2025년 11월 달력 생성
+    generateCalendar(2025, 11);
+
+    // 카카오맵 API 초기화
     const mapContainer = document.getElementById('map');
     if (mapContainer && typeof kakao !== "undefined") {
         const mapOption = { 
-            center: new kakao.maps.LatLng(37.58386, 127.05876), // 서울시립대 위도, 경도
-            level: 4 
+            center: new kakao.maps.LatLng(37.58386, 127.05876),
+            level: 3 
         };
         const map = new kakao.maps.Map(mapContainer, mapOption);
-        const markerPosition = new kakao.maps.LatLng(37.58386, 127.05876);
-        const marker = new kakao.maps.Marker({ 
-            position: markerPosition 
-        });
+        const markerPosition  = new kakao.maps.LatLng(37.58386, 127.05876); 
+        const marker = new kakao.maps.Marker({ position: markerPosition });
         marker.setMap(map);
+        const iwContent = '<div style="padding:5px; text-align:center; font-size:14px; min-width:150px;">서울시립대 자작마루</div>';
+        const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
+        infowindow.open(map, marker);
     }
 
-    // 계좌번호 토글 기능 (기존과 동일)
+    // 계좌번호 토글 기능
     const accountBtns = document.querySelectorAll(".account-btn");
     accountBtns.forEach(btn => {
         btn.addEventListener("click", function() {
-            const targetId = this.dataset.target;
-            const targetDiv = document.getElementById(targetId);
-            const isVisible = targetDiv.style.display === "block";
-            targetDiv.style.display = isVisible ? "none" : "block";
+            const targetDiv = document.getElementById(this.dataset.target);
+            targetDiv.style.display = (targetDiv.style.display === "block") ? "none" : "block";
         });
     });
 
-    // 클립보드 복사 기능 (기존과 동일)
+    // 클립보드 복사 기능
     if (typeof ClipboardJS !== "undefined") {
-        const clipboard = new ClipboardJS('.copy-btn');
-        clipboard.on('success', function(e) {
-            alert("계좌번호가 복사되었습니다.");
+        new ClipboardJS('.copy-btn').on('success', (e) => {
+            showToast("계좌번호가 복사되었습니다.");
             e.clearSelection();
-        });
-        clipboard.on('error', function(e) {
-            alert("복사에 실패했습니다.");
         });
     }
 
-    // 전세버스 인원 입력칸 보이기/숨기기 기능 (기존과 동일)
+    // 전세버스 인원 입력칸 토글
     document.querySelectorAll('input[name="bus_choice"]').forEach(radio => {
         radio.addEventListener('change', function() {
             const countWrapper = document.getElementById('bus-count-wrapper');
-            if (this.value === '해당 없음') {
-                countWrapper.classList.add('hidden');
-            } else {
-                countWrapper.classList.remove('hidden');
+            const isBusSelected = (this.value !== '해당 없음');
+            countWrapper.classList.toggle('hidden', !isBusSelected);
+            if (isBusSelected) {
                 const busGuestsInput = document.getElementById('bus-guests');
                 if (!busGuestsInput.value || parseInt(busGuestsInput.value) === 0) {
                     busGuestsInput.value = "1";
@@ -80,22 +113,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // 참석 의사(RSVP) 폼 제출 처리 로직 (기존과 동일)
+    // RSVP 폼 제출
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            
+            event.preventDefault();
             const form = event.target;
-            const formData = new FormData(form);
             const submitButton = form.querySelector('button[type="submit"]');
-
             submitButton.disabled = true;
             submitButton.textContent = '전송 중...';
 
             fetch(form.action, {
                 method: form.method,
-                body: formData,
+                body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
@@ -104,79 +134,27 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById('bus-count-wrapper').classList.add('hidden');
                 } else {
                     response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            showToast(data["errors"].map(error => error["message"]).join(", "), true);
-                        } else {
-                            showToast("전송에 실패했습니다. 다시 시도해주세요.", true);
-                        }
-                    })
+                        const errorMessage = data.errors ? data.errors.map(e => e.message).join(', ') : "전송에 실패했습니다.";
+                        showToast(errorMessage, true);
+                    });
                 }
-            }).catch(error => {
-                showToast("네트워크 오류가 발생했습니다. 다시 시도해주세요.", true);
-            }).finally(() => {
+            }).catch(() => showToast("네트워크 오류가 발생했습니다.", true))
+              .finally(() => {
                 submitButton.disabled = false;
                 submitButton.textContent = '참석 의사 보내기';
             });
         });
     }
 
-    // =================================================================
-    // =========== [위치 이동] 스크롤 애니메이션 처리 로직 ===============
-    // =================================================================
+    // 스크롤 애니메이션
     const animationTargets = document.querySelectorAll('.scroll-animate');
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
-    });
-
-    animationTargets.forEach(target => {
-        observer.observe(target);
-    });
-
-    const galleryGrid = document.querySelector('.gallery-custom-grid');
-
-    if (galleryGrid) {
-        const galleryObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const items = entry.target.querySelectorAll('.gallery-item');
-                    items.forEach((item, index) => {
-                        // 각 아이템에 순차적인 딜레이를 적용
-                        item.style.transitionDelay = `${index * 80}ms`; // 80ms 간격으로 나타남
-                        item.classList.add('visible');
-                    });
-                    observer.unobserve(entry.target); // 갤러리 전체에 대해 한 번만 실행
-                }
-            });
-        }, {
-            threshold: 0.1 // 갤러리가 10% 보이면 실행
-        });
-    
-        galleryObserver.observe(galleryGrid);
-    }
-    const swiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            loop: true, // 무한 루프
-            grabCursor: true, // 마우스 커서를 잡는 모양으로 변경
-          
-            // Pagination (페이지 표시 점)
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true, // 점을 클릭해서 이동 가능
-            },
-          
-            // Navigation arrows (좌우 이동 버튼)
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
-        });
+    }, { threshold: 0.1 });
+    animationTargets.forEach(target => observer.observe(target));
 });
