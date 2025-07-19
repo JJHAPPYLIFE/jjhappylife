@@ -149,7 +149,7 @@ body {
 .parents {
     display: flex;
     flex-wrap: wrap; /* 공간이 부족하면 다음 줄로 자동 줄바꿈 */
-    justify-content: space-between; /* 기본 상태: 양쪽 끝 정렬 */
+    justify-content: center; /* 기본 상태: 양쪽 끝 정렬 */  
     align-items: center;
     gap: 10px; /* 아이템 사이의 최소 간격 */
     background-color: #f9f9f9;
