@@ -163,6 +163,7 @@ body {
     margin: 0;
     /* 단어가 잘리지 않도록 설정 */
     word-break: keep-all; 
+    text-align: center;
 }
 
 /* 전화/문자 아이콘을 감싸는 div */
