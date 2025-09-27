@@ -235,7 +235,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script src="script.js"></script>
 
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
             const daejeonBusYes = document.getElementById('daejeon-bus-yes');
             const daejeonBusNo = document.getElementById('daejeon-bus-no');
@@ -245,10 +245,10 @@
             function toggleBusCount() {
                 if (daejeonBusYes.checked) {
                     busCountWrapper.classList.remove('hidden');
-                    busGuestsSelect.value = "1"; // '예'를 누르면 기본값을 1명으로 설정
+                    busGuestsSelect.value = "1";
                 } else {
                     busCountWrapper.classList.add('hidden');
-                    busGuestsSelect.value = "0"; // '아니요'를 누르면 값을 0으로 설정 (데이터 혼선 방지)
+                    busGuestsSelect.value = "0";
                 }
             }
 
